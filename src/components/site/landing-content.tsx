@@ -72,6 +72,21 @@ function IconRecharge(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+function IconSun(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} {...props}>
+      <circle cx="12" cy="12" r="4.5" />
+      <path d="M12 2 v2.5 M12 19.5 v2.5 M22 12 h-2.5 M4.5 12 H2 M19.07 4.93 l-1.77 1.77 M6.7 17.3 l-1.77 1.77 M19.07 19.07 l-1.77 -1.77 M6.7 6.7 L4.93 4.93" />
+    </svg>
+  );
+}
+function IconMoon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} {...props}>
+      <path d="M20 14.5 A8.5 8.5 0 1 1 9.5 4 a6.5 6.5 0 0 0 10.5 10.5 Z" />
+    </svg>
+  );
+}
 
 /** Adds `is-visible` to every `.reveal` element inside once it scrolls into view. */
 function useReveal() {
@@ -103,6 +118,55 @@ function useReveal() {
   }, []);
 
   return rootRef;
+}
+
+type Theme = "light" | "dark";
+
+/** Reads/writes the `data-theme` attribute on <html>, persisted to localStorage. */
+function useTheme() {
+  const [theme, setTheme] = useState<Theme | null>(null);
+
+  useEffect(() => {
+    const current = document.documentElement.getAttribute("data-theme");
+    if (current === "light" || current === "dark") {
+      setTheme(current);
+      return;
+    }
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setTheme(prefersDark ? "dark" : "light");
+  }, []);
+
+  const toggle = () => {
+    setTheme((prev) => {
+      const next: Theme = prev === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      try {
+        localStorage.setItem("theme", next);
+      } catch {
+        /* localStorage unavailable (private mode, etc.) — theme just won't persist */
+      }
+      return next;
+    });
+  };
+
+  return { theme, toggle };
+}
+
+function ThemeToggle() {
+  const { theme, toggle } = useTheme();
+  const isDark = theme === "dark";
+
+  return (
+    <button
+      type="button"
+      className="theme-toggle"
+      onClick={toggle}
+      aria-label={isDark ? "Passer en mode clair" : "Passer en mode sombre"}
+      aria-pressed={isDark}
+    >
+      {theme !== null && (isDark ? <IconMoon /> : <IconSun />)}
+    </button>
+  );
 }
 
 function LaunchForm() {
@@ -167,6 +231,7 @@ export function LandingContent() {
             <a className="btn btn-primary btn-sm" href="#lancement">
               Liste de lancement
             </a>
+            <ThemeToggle />
           </div>
         </div>
       </header>
