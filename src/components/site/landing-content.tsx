@@ -163,8 +163,15 @@ function ThemeToggle() {
       onClick={toggle}
       aria-label={isDark ? "Passer en mode clair" : "Passer en mode sombre"}
       aria-pressed={isDark}
+      data-state={theme ?? "light"}
     >
-      {theme !== null && (isDark ? <IconMoon /> : <IconSun />)}
+      <span className="theme-toggle-icon sun">
+        <IconSun />
+      </span>
+      <span className="theme-toggle-icon moon">
+        <IconMoon />
+      </span>
+      <span className="theme-toggle-thumb" aria-hidden="true" />
     </button>
   );
 }
