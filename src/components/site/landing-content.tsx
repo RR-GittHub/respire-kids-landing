@@ -223,25 +223,25 @@ export function LandingContent() {
       <main id="main">
         <section className="trust-strip">
           <div className="wrap">
-            <div className="trust-item">
+            <div className="trust-item reveal" style={{ transitionDelay: "0ms" }}>
               <span className="ico">
                 <IconLeaf width={18} height={18} />
               </span>
               98{" "}% d&apos;origine naturelle
             </div>
-            <div className="trust-item">
+            <div className="trust-item reveal" style={{ transitionDelay: "80ms" }}>
               <span className="ico">
                 <IconCheckCircle width={18} height={18} />
               </span>
               Formulé sous contrôle pédiatrique
             </div>
-            <div className="trust-item">
+            <div className="trust-item reveal" style={{ transitionDelay: "160ms" }}>
               <span className="ico">
                 <IconRefresh width={18} height={18} />
               </span>
               Flacon rechargeable à l&apos;infini
             </div>
-            <div className="trust-item">
+            <div className="trust-item reveal" style={{ transitionDelay: "240ms" }}>
               <span className="ico">
                 <IconNoFragrance width={18} height={18} />
               </span>

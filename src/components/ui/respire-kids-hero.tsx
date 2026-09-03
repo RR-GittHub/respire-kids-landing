@@ -2,10 +2,12 @@
 
 import {
   useEffect,
+  useRef,
   type AnchorHTMLAttributes,
   type CSSProperties,
   type ReactNode,
 } from "react";
+import { ChevronDown } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -49,17 +51,33 @@ const HERO_STYLES = `
 }
 .respire-kids-hero-image {
   object-position: var(--respire-mobile-focus, 49% 42%);
+  will-change: transform;
 }
 @media (min-width: 768px) {
   .respire-kids-hero-image {
     object-position: var(--respire-focus, 50% 50%);
   }
 }
+@keyframes respire-kids-hero-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(7px); }
+}
+.respire-kids-hero-scrollcue {
+  animation: respire-kids-hero-rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.9s both;
+  transition: opacity 0.4s ease;
+}
+.respire-kids-hero-scrollcue svg {
+  animation: respire-kids-hero-bounce 1.8s ease-in-out infinite;
+}
 @media (prefers-reduced-motion: reduce) {
   .respire-kids-hero-rise {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
+  }
+  .respire-kids-hero-scrollcue,
+  .respire-kids-hero-scrollcue svg {
+    animation: none !important;
   }
 }
 `;
@@ -89,6 +107,42 @@ const BUTTON_STYLES = `
   .respire-kids-hero-btn:hover .respire-kids-hero-sheen { animation: none; }
 }
 `;
+
+/** Gently drifts + scales the hero image on scroll, so the hero feels like it eases into the body below. */
+function useHeroParallax() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const imageRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const image = imageRef.current;
+    if (!section || !image) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      const rect = section.getBoundingClientRect();
+      const progress = Math.min(1, Math.max(0, -rect.top / Math.max(rect.height, 1)));
+      image.style.transform = `translate3d(0, ${progress * 48}px, 0) scale(${1.06 + progress * 0.04})`;
+    };
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  return { sectionRef, imageRef };
+}
 
 function rise(step: number): CSSProperties {
   return {
@@ -241,6 +295,7 @@ export function RespireKidsHero({
   className,
 }: RespireKidsHeroProps) {
   useWebFonts(loadFonts);
+  const { sectionRef, imageRef } = useHeroParallax();
   const veil = Math.max(0, Math.min(1, scrim));
   const heroStyle: HeroStyle = {
     minHeight,
@@ -251,6 +306,7 @@ export function RespireKidsHero({
 
   return (
     <section
+      ref={sectionRef}
       className={cn(
         "relative isolate flex w-full overflow-hidden bg-[#12271F]",
         className,
@@ -262,6 +318,7 @@ export function RespireKidsHero({
       {/* The supplied image is intentionally panoramic, with its reading space on the left. */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
+        ref={imageRef}
         src={image}
         srcSet={
           sources?.length
@@ -354,6 +411,33 @@ export function RespireKidsHero({
             ) : null}
           </div>
         </div>
+      </div>
+
+      <a
+        href="#main"
+        aria-label="Découvrir la suite"
+        className="respire-kids-hero-scrollcue absolute inset-x-0 bottom-7 z-20 mx-auto flex w-fit flex-col items-center gap-1.5 text-white/75 transition-colors hover:text-white sm:bottom-9"
+      >
+        <span className="text-[10px] font-medium uppercase tracking-[0.22em]">
+          Découvrir
+        </span>
+        <ChevronDown aria-hidden="true" size={20} strokeWidth={1.75} />
+      </a>
+
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 z-[6] translate-y-px leading-[0]"
+      >
+        <svg
+          viewBox="0 0 1440 110"
+          preserveAspectRatio="none"
+          className="block h-[56px] w-full sm:h-[76px] md:h-[96px]"
+        >
+          <path
+            d="M0,64 C240,108 480,8 720,38 C960,68 1200,98 1440,46 L1440,110 L0,110 Z"
+            style={{ fill: "var(--site-bg, #FBF6EC)" }}
+          />
+        </svg>
       </div>
     </section>
   );
