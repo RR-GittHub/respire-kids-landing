@@ -49,29 +49,6 @@ function IconCheck(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
-function IconGrab(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} {...props}>
-      <path d="M8 3 v4 M16 3 v4" />
-      <rect x="6" y="9" width="12" height="12" rx="3" />
-    </svg>
-  );
-}
-function IconFoam(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} {...props}>
-      <path d="M12 3 c4 4 6 7 6 10 a6 6 0 1 1 -12 0 c0 -3 2 -6 6 -10 Z" />
-    </svg>
-  );
-}
-function IconRecharge(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} {...props}>
-      <path d="M3 12 a9 9 0 1 0 3 -6.7" />
-      <path d="M3 4 v5 h5" />
-    </svg>
-  );
-}
 function IconSun(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} {...props}>
@@ -438,44 +415,23 @@ export function LandingContent() {
               </p>
             </div>
             <div className="steps">
-              <div className="step reveal">
-                <span className="num" aria-hidden="true">
-                  01
-                </span>
-                <div className="icon-wrap">
-                  <IconGrab width={24} height={24} />
-                </div>
-                <h3>Attraper</h3>
-                <p>
-                  Une forme ronde et des couleurs vives que la main d&apos;un enfant de 3{" "}ans
-                  repère et saisit seule sur le bord de la baignoire.
-                </p>
+              <div className="step step-photo reveal">
+                <img
+                  src="/respire-kids/rituel-01-attraper.jpg"
+                  alt="Étape 1, attraper : un enfant attrape seul le flacon Respire Kids dans le bain."
+                />
               </div>
-              <div className="step reveal">
-                <span className="num" aria-hidden="true">
-                  02
-                </span>
-                <div className="icon-wrap">
-                  <IconFoam width={24} height={24} />
-                </div>
-                <h3>Presser &amp; mousser</h3>
-                <p>
-                  Une pompe souple libère une mousse douce, obtenue naturellement, sans sulfate
-                  agressif pour la peau ni les yeux.
-                </p>
+              <div className="step step-photo reveal">
+                <img
+                  src="/respire-kids/rituel-02-presser-mousser.jpg"
+                  alt="Étape 2, presser et mousser : un enfant presse le flacon pour faire mousser le gel lavant dans sa main."
+                />
               </div>
-              <div className="step reveal">
-                <span className="num" aria-hidden="true">
-                  03
-                </span>
-                <div className="icon-wrap">
-                  <IconRecharge width={24} height={24} />
-                </div>
-                <h3>Recharger</h3>
-                <p>
-                  Le sachet éco-recharge remplit à nouveau le même flacon incassable —
-                  rien à jeter, rien à racheter.
-                </p>
+              <div className="step step-photo reveal">
+                <img
+                  src="/respire-kids/rituel-03-recharger.jpg"
+                  alt="Étape 3, recharger : une main verse l'éco-recharge dans le flacon Respire Kids."
+                />
               </div>
             </div>
           </div>
