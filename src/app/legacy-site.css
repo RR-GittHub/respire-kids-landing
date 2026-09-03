@@ -297,7 +297,7 @@
 .site .gamme { background: var(--site-surface-mint); }
 .site .product-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 22px;
 }
 .site .product-card {
@@ -318,8 +318,16 @@
   padding: 14px;
   background: var(--site-surface-mint);
   color: var(--site-teal);
+  overflow: hidden;
 }
 .site .product-card .swatch svg { width: 46%; height: 46%; }
+.site .product-card .swatch-photo { padding: 0; }
+.site .product-card .swatch-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 .site .product-card h3 { font-size: 1.08rem; font-weight: 700; }
 .site .product-card .desc { color: var(--site-ink-soft); font-size: 0.9rem; flex-grow: 1; }
 .site .product-card .price-row {

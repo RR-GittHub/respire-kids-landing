@@ -73,49 +73,6 @@ function IconRecharge(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-/** Product swatch icons — stand-ins for real packshots, in the same stroke style as the rest of the page. */
-function IconBottle(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} {...props}>
-      <path d="M10 2 h4 v3 l2 2 v13 a2 2 0 0 1 -2 2 h-4 a2 2 0 0 1 -2 -2 V7 l2 -2 Z" />
-      <path d="M9 12 h6" />
-    </svg>
-  );
-}
-function IconPouch(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} {...props}>
-      <path d="M7 3 h10 l1 6 c1 4 1 9 -2 11 a6 6 0 0 1 -8 0 c-3 -2 -3 -7 -2 -11 Z" />
-      <path d="M9 3 v3 M15 3 v3" />
-    </svg>
-  );
-}
-function IconTube(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} {...props}>
-      <path d="M9 2 h6 l1 3 -1 2 H9 l-1 -2 Z" />
-      <path d="M8 7 h8 l1 12 a2 2 0 0 1 -2 3 H9 a2 2 0 0 1 -2 -3 Z" />
-    </svg>
-  );
-}
-function IconSoap(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} {...props}>
-      <rect x="3" y="9" width="18" height="9" rx="4" />
-      <path d="M8 9 c0 -3 2 -5 4 -5 s4 2 4 5" />
-    </svg>
-  );
-}
-function IconPack(props: SVGProps<SVGSVGElement>) {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} {...props}>
-      <path d="M12 3 l9 5 -9 5 -9 -5 Z" />
-      <path d="M3 8 v8 l9 5 9 -5 V8" />
-      <path d="M12 13 v8" />
-    </svg>
-  );
-}
-
 /** Adds `is-visible` to every `.reveal` element inside once it scrolls into view. */
 function useReveal() {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -305,92 +262,93 @@ export function LandingContent() {
           <div className="wrap">
             <div className="section-head reveal">
               <span className="kicker">La gamme</span>
-              <h2>Quatre essentiels pour le rituel du bain.</h2>
+              <h2>Toute la gamme, pensée pour le rituel du bain.</h2>
               <p>
-                Un flacon qu&apos;on ne rachète jamais, une recharge qu&apos;on glisse dedans, et deux
-                soins pour la peau — pensés ensemble, du gel à la crème.
+                Du nettoyage aux soins du visage et des cheveux, six essentiels 98{" "}%
+                naturels, dès la naissance.
               </p>
             </div>
             <div className="product-grid">
               <div className="product-card reveal">
-                <div className="swatch">
-                  <IconBottle />
+                <div className="swatch swatch-photo">
+                  <img src="/respire-kids/eau-nettoyante.jpg" alt="Eau nettoyante douce Respire Kids, flacon pompe 250 ml." />
                 </div>
-                <h3>Gel lavant 2-en-1</h3>
+                <h3>Eau nettoyante</h3>
                 <p className="desc">
-                  Corps et cheveux, flacon pompe incassable et ergonomique de 400{" "}ml, forme
-                  pensée pour être attrapée dès 3{" "}ans.
+                  Nettoyante visage et corps, sans rinçage, dès la naissance. Formule bio et
+                  éco-conçue.
                 </p>
                 <div className="price-row">
-                  <span className="price">
-                    11<span className="cents">,90{" "}€</span>
-                  </span>
-                  <span className="price-note">400{" "}ml</span>
+                  <span className="price-note">250{" "}ml</span>
                 </div>
               </div>
 
               <div className="product-card reveal">
-                <div className="swatch">
-                  <IconPouch />
+                <div className="swatch swatch-photo">
+                  <img src="/respire-kids/liminant.jpg" alt="Liminant doux Respire Kids, tube visage et corps." />
                 </div>
-                <h3>Éco-recharge gel lavant</h3>
+                <h3>Liminant</h3>
                 <p className="desc">
-                  Sachet de 500{" "}ml, fluide ou poudre, pour remplir à nouveau le même
-                  flacon principal sans en racheter un neuf.
+                  Soin visage et corps au beurre de karité et à l&apos;huile d&apos;olive, bio et
+                  apaisant.
                 </p>
                 <div className="price-row">
-                  <span className="price">
-                    8<span className="cents">,90{" "}€</span>
-                  </span>
+                  <span className="price-note">Dermo-cosmétique · 0+</span>
+                </div>
+              </div>
+
+              <div className="product-card reveal">
+                <div className="swatch swatch-photo">
+                  <img src="/respire-kids/apres-shampoing.jpg" alt="Après-shampoing doux Respire Kids, flacon 200 ml." />
+                </div>
+                <h3>Après-shampoing</h3>
+                <p className="desc">
+                  Démêle en douceur au beurre de karité et à l&apos;aloé vera, dès la naissance.
+                </p>
+                <div className="price-row">
+                  <span className="price-note">200{" "}ml</span>
+                </div>
+              </div>
+
+              <div className="product-card reveal">
+                <div className="swatch swatch-photo">
+                  <img src="/respire-kids/gel-lavant.jpg" alt="Gel lavant doux corps et cheveux Respire Kids, éco-recharge 500 ml." />
+                </div>
+                <h3>Gel lavant corps &amp; cheveux</h3>
+                <p className="desc">
+                  98{" "}% d&apos;ingrédients d&apos;origine naturelle, en éco-recharge pour le
+                  flacon rechargeable.
+                </p>
+                <div className="price-row">
                   <span className="price-note">500{" "}ml</span>
                 </div>
               </div>
 
               <div className="product-card reveal">
-                <div className="swatch">
-                  <IconTube />
+                <div className="swatch swatch-photo">
+                  <img src="/respire-kids/creme-hydratante.jpg" alt="Crème hydratante Respire Kids, tube." />
                 </div>
                 <h3>Crème hydratante</h3>
                 <p className="desc">
-                  Beurre de karité et avocat, tube recyclé, pour apaiser les peaux sèches
-                  après le bain.
+                  Hydratante et apaisante, à l&apos;huile d&apos;amande douce et à l&apos;aloé vera.
                 </p>
                 <div className="price-row">
-                  <span className="price">
-                    13<span className="cents">,50{" "}€</span>
-                  </span>
-                  <span className="price-note">Tube</span>
-                </div>
-              </div>
-
-              <div className="product-card reveal">
-                <div className="swatch">
-                  <IconSoap />
-                </div>
-                <h3>Savon doux</h3>
-                <p className="desc">
-                  Nettoyant visage &amp; corps à l&apos;huile d&apos;amande douce, format solide de
-                  100{" "}g, zéro emballage plastique.
-                </p>
-                <div className="price-row">
-                  <span className="price-note">Inclus dans le pack découverte</span>
+                  <span className="price-note">Dermo-cosmétique · 0+</span>
                 </div>
               </div>
 
               <div className="product-card pack reveal">
                 <span className="badge-best">Le plus complet</span>
-                <div className="swatch">
-                  <IconPack />
+                <div className="swatch swatch-photo">
+                  <img src="/respire-kids/kit-1er-bain.jpg" alt="Coffret Kit mon 1er bain Respire Kids." />
                 </div>
-                <h3>Pack découverte</h3>
+                <h3>Kit mon 1er bain</h3>
                 <p className="desc">
-                  L&apos;essentiel de la gamme Respire Kids pour un premier rituel du bain complet,
-                  à prix réduit.
+                  Un coffret découverte complet pour le premier bain de bébé, fabriqué en
+                  France.
                 </p>
                 <div className="price-row">
-                  <span className="price">
-                    29<span className="cents">,90{" "}€</span>
-                  </span>
+                  <span className="price-note">Coffret découverte</span>
                 </div>
               </div>
             </div>
@@ -562,10 +520,12 @@ export function LandingContent() {
             <div className="footer-cols">
               <div className="footer-col">
                 <h4>Gamme</h4>
-                <a href="#gamme">Gel lavant 2-en-1</a>
-                <a href="#gamme">Éco-recharge</a>
+                <a href="#gamme">Eau nettoyante</a>
+                <a href="#gamme">Liminant</a>
+                <a href="#gamme">Après-shampoing</a>
+                <a href="#gamme">Gel lavant corps &amp; cheveux</a>
                 <a href="#gamme">Crème hydratante</a>
-                <a href="#gamme">Savon doux</a>
+                <a href="#gamme">Kit mon 1er bain</a>
               </div>
               <div className="footer-col">
                 <h4>À propos</h4>
