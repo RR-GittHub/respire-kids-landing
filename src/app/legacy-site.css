@@ -85,6 +85,19 @@
   -webkit-font-smoothing: antialiased;
 }
 
+/* Smooth (but quick) light/dark crossfade: every element inherits this base
+   color transition, so toggling data-theme fades rather than snaps. Elements
+   below with their own hover transitions (buttons, cards, the toggle thumb)
+   repeat these properties alongside their motion so neither list overrides
+   the other. */
+.site,
+.site *,
+.site *::before,
+.site *::after {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease,
+    box-shadow 0.3s ease, fill 0.3s ease, stroke 0.3s ease;
+}
+
 .site h1, .site h2, .site h3 {
   font-family: 'Baloo 2', 'Figtree', sans-serif;
   color: var(--site-ink);
@@ -141,7 +154,7 @@
   color: var(--site-ink-soft);
   font-weight: 600;
   font-size: 0.95rem;
-  transition: color 0.15s ease;
+  transition: color 0.3s ease;
 }
 .site nav.primary-nav a:hover { color: var(--site-teal); }
 .site .header-actions { display: flex; align-items: center; gap: 20px; }
@@ -159,7 +172,8 @@
   text-decoration: none;
   border: 2px solid transparent;
   cursor: pointer;
-  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  transition: transform 0.15s ease, background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease,
+    color 0.3s ease;
   white-space: nowrap;
 }
 .site .btn:hover { transform: translateY(-2px); }
@@ -191,7 +205,7 @@
   border: 1px solid var(--site-line);
   background: var(--site-surface-mint);
   cursor: pointer;
-  transition: border-color 0.15s ease;
+  transition: border-color 0.15s ease, background-color 0.3s ease;
 }
 .site .theme-toggle:hover { border-color: var(--site-teal); }
 .site .theme-toggle-icon {
@@ -213,7 +227,8 @@
   border-radius: 50%;
   background: var(--site-surface);
   box-shadow: var(--site-shadow);
-  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 .site .theme-toggle[data-state="dark"] .theme-toggle-thumb { transform: translateX(30px); }
 
@@ -273,7 +288,8 @@
 .site .reveal {
   opacity: 0;
   transform: translateY(18px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease, background-color 0.3s ease,
+    color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 .site .reveal.is-visible { opacity: 1; transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) {
@@ -347,7 +363,8 @@
   flex-direction: column;
   gap: 18px;
   border: 1px solid var(--site-line-soft);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease,
+    border-color 0.3s ease, opacity 0.6s ease;
 }
 .site .product-card:hover { transform: translateY(-6px); box-shadow: var(--site-shadow); }
 .site .product-card .swatch {
@@ -443,7 +460,7 @@
   padding: 0;
   overflow: hidden;
   aspect-ratio: 5 / 8;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.3s ease, opacity 0.6s ease;
 }
 .site .step.step-photo:hover { transform: translateY(-6px); box-shadow: var(--site-shadow); }
 .site .step.step-photo img {
